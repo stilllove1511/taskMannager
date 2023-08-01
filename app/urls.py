@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path
 from .views import create_card, create_list, delete_card, delete_list, get_card, get_list, update_card, update_list
 from strawberry.django.views import GraphQLView
-from app.schema import schema
+from app.schema.index import schema
 
 urlpatterns = [
     path('list/create', create_list, name='create-list'),
