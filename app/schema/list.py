@@ -1,11 +1,10 @@
 import strawberry
-from ..models import List as ListModel, Card
+
+from app.schema.table import TableType
+from app.types import ListType
+from ..models import List as ListModel
 from typing import List
 
-@strawberry.type
-class ListType:
-    id: int
-    title: str
 @strawberry.type
 class ListQuery:
     @strawberry.field
@@ -18,8 +17,8 @@ class ListQuery:
 @strawberry.type
 class ListMutation:
     @strawberry.mutation
-    def addList(self, title: str,) -> ListType:
-        return ListModel.objects.create(title=title)
+    def addList(self, title: str,tableId:int) -> ListType:
+        return ListModel.objects.create(title=title,table_id=tableId)
     @strawberry.mutation
     def updateList(self, id: int, title: str) -> ListType:
         return ListModel.objects.filter(id=id).update(title=title)

@@ -1,15 +1,9 @@
 # file: myapp/schema.py
 import strawberry
 
-from app.schema.list import ListType
+from app.types import CardType
 from ..models import Card
 from typing import List
-
-@strawberry.type
-class CardType:
-    id: int
-    title: str
-    list:ListType
 
 @strawberry.type
 class CardQuery:
