@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.urls import path
 from .views import create_card, create_list, delete_card, delete_list, get_card, get_list, update_card, update_list
+from strawberry.django.views import GraphQLView
+from app.schema import schema
 
 urlpatterns = [
     path('list/create', create_list, name='create-list'),
@@ -26,4 +28,5 @@ urlpatterns = [
     path('card/get_all', get_card, name='get-card'),
     path('card/update/<str:id>', update_card, name='update-card'),
     path('card/delete/<str:id>', delete_card, name='delete-card'),
+    path("graphql", GraphQLView.as_view(schema=schema)),
 ]
